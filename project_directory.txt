@@ -1,0 +1,73 @@
+Project directory structure:
+model_deployment
+-- .venv/
+-- routers/
+    -- main.py
+-- tests/
+    -- test2.py
+-- training/
+    -- train_model2.py
+    -- HousePricePrediction.xlsx
+    -- model.pkl
+    -- scaler.pkl
+    -- label_encoders.pkl
+-- .gitignore
+-- Dockerfile
+-- project_directory.txt
+-- requirements.txt
+-- deployment.yaml
+terraform-eks/
+├── main.tf               # Main Terraform configuration file with vpc and eks
+├── providers.tf          # AWS provider configuration
+├── iam.tf                # IAM roles and policies
+├── outputs.tf            # Outputs for the EKS cluster
+├── variables.tf          # Input variables (optional)
+├── terraform.tfvars      # Variable values (optional)
+└── README.md             # Documentation for the project
+
+Docker commands:
+docker build -t hpp-app .
+docker run -p 5001:5001 hpp-app
+
+terminal:
+eval $(minikube docker-env)
+docker build -t hpp-app:latest .
+curl https://api.ipify.org -> 47.38.152.173%
+brew install ca-certificates
+
+Resources created:
+cluster_endpoint = "https://00E7C48358495AE7A1CAC98799D2973D.gr7.us-east-1.eks.amazonaws.com"
+cluster_name = "hppmodelapp-eks-cluster"
+cluster_security_group_id = "sg-0e9fcc88906b3a4ba"
+node_security_group_id = "sg-0e0c3447e6d35d03b"
+vpc_id = "vpc-0b865e0c54c9ce288"
+
+Testing EKS configurations:
+curl https://00E7C48358495AE7A1CAC98799D2973D.gr7.us-east-1.eks.amazonaws.com
+aws eks --region us-east-1 update-kubeconfig --name hppmodelapp-eks-cluster
+kubectl get nodes
+ssh -i "id_rsa" ec2-user@10.0.3.233
+curl -k https://00E7C48358495AE7A1CAC98799D2973D.gr7.us-east-1.eks.amazonaws.com
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "Unauthorized",
+  "reason": "Unauthorized",
+  "code": 401
+}%      
+curl --cacert /opt/homebrew/anaconda3/ssl/cacert.pem https://00E7C48358495AE7A1CAC98799D2973D.gr7.us-east-1.eks.amazonaws.com
+
+kubectl commands:
+minikube start
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+minikube service hpp-model-service --url
+-- a url gets built again use curl with different url
+
+curl -X POST http://<IP>:<PORT>/predict -H "Content-Type: application/json" -d '{
+  "features": [
+    60, 8450, 5, 2003, 2003, 0.0, 856.0, "RL", "Inside", "1Fam", "VinylSd"
+  ]
+}'

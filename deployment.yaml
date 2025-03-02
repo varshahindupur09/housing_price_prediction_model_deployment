@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: house-price-prediction-app-deployment  # Name of the deployment
+spec:
+  replicas: 3  # Number of replicas (pods) to run 
+  selector:
+    matchLabels:
+      app: model_deployment_hpp  # Label to match with the pod
+  template:
+    metadata: #pod labels metadata
+      labels:
+        app: model_deployment_hpp  # Label to match with the deployment
+    spec:
+      containers:
+      - name: house-price-prediction-container  # Name of the container
+        image: hpp-app:latest  # Docker image to use
+        imagePullPolicy: Never  # Never pull the image from the registry
+        ports:
+        - containerPort: 5001  # Port to expose
