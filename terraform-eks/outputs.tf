@@ -1,5 +1,21 @@
 # # Outputs for the EKS cluster
 # # outputs.tf
+output "cluster_id" {
+  description = "EKS Cluster ID"
+  value       = module.eks.cluster_id
+}
+
+output "cluster_endpoint" {
+  description = "EKS Cluster Endpoint"
+  value       = module.eks.cluster_endpoint
+}
+
+output "ecr_repository_url" {
+  description = "ECR Repository URL"
+  value       = aws_ecr_repository.hpp_app.repository_url
+}
+
+
 # output "cluster_name" {
 #   value = module.eks.cluster_name
 # }
