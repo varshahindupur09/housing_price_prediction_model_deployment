@@ -3,6 +3,13 @@ provider "aws" {
   profile = "varshahindupur"
 }
 
+# provider "aws" {
+#   region = "us-east-1"
+#   assume_role {
+#     role_arn = "arn:aws:iam::381491906666:role/hppmodelapp-eks-cluster-role"
+#   }
+# }
+
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
   token                  = data.aws_eks_cluster_auth.eks.token

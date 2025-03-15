@@ -17,7 +17,8 @@ model_deployment
 -- requirements.txt
 -- deployment.yaml
 terraform-eks/
-├── main.tf               # Main Terraform configuration file with vpc and eks
+├── main.tf               # Main Terraform configuration
+├── eks.tf
 ├── providers.tf          # AWS provider configuration
 ├── iam.tf                # IAM roles and policies
 ├── outputs.tf            # Outputs for the EKS cluster

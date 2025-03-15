@@ -1,11 +1,13 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Service
 metadata:
   name: house-price-prediction-app-service  # Name of the service
 spec:
   selector:
     app: model_deployment_hpp  # Label to match with the pod
+  type: LoadBalancer  # Exposes externally
   ports:
     - protocol: TCP
-      port: 8080  # Port to expose
+      # port: 8080  # Port to expose
+      port: 5001
       targetPort: 5001  # Port to forward to

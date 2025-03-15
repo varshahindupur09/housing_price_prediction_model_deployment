@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: house-price-prediction-container  # Name of the container
-        image: hpp-app:latest  # Docker image to use
-        imagePullPolicy: Never  # Never pull the image from the registry
+        # image: hpp-app:latest  # Docker image to use
+        image: 381491906666.dkr.ecr.us-east-1.amazonaws.com/hpp-app:latest
+        imagePullPolicy: Always  # Never pull the image from the registry
         ports:
         - containerPort: 5001  # Port to expose

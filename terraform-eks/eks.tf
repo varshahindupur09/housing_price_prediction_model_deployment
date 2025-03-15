@@ -17,8 +17,15 @@ module "eks" {
       max_capacity     = 3
       min_capacity     = 1
 
-      instance_types = ["t2.micro"]
+      instance_types = ["t3.medium"]  # ✅ Upgraded instance type
       capacity_type  = "ON_DEMAND"
+
+      # ✅ Ensuring correct IAM policies for worker nodes
+      iam_role_additional_policies = [
+        "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+        "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+        "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+      ]
     }
   }
 
